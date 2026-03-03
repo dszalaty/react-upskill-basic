@@ -4,6 +4,7 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import { useTranslation, Trans } from "react-i18next";
 import { Suspense } from "react";
+import Button from "@mui/material/Button";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -30,7 +31,9 @@ function App() {
           </Trans>
         </p>
       </div>
-      <p>foo</p>
+      <p>
+        <Button variant="contained">Material UI contained button</Button>
+      </p>
       <p className="read-the-docs">
         {t("clickLogos", "Click on the Vite and React logos to learn more")}
       </p>
