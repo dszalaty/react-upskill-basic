@@ -1,10 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import { useTranslation, Trans } from "react-i18next";
+import { Suspense } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const { t, i18n } = useTranslation();
 
   return (
     <>
@@ -22,14 +25,23 @@ function App() {
           count is {count}
         </button>
         <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+          <Trans i18nKey="editCode">
+            Edit <code>src/App.tsx</code> and save to test HMR
+          </Trans>
         </p>
       </div>
+      <p>foo</p>
       <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+        {t("clickLogos", "Click on the Vite and React logos to learn more")}
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default function WrappedApp() {
+  return (
+    <Suspense fallback="...is loading">
+      <App />
+    </Suspense>
+  );
+}
